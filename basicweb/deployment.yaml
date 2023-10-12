@@ -15,16 +15,3 @@ spec:
       containers:
       - name: web-app
         image: nginx:latest
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: simple-web-app-svc
-spec:
-  selector:
-    app: simple-web-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
