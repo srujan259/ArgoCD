@@ -17,8 +17,8 @@ spec:
       project: default
       source:
         helm:
-          valueFiles: ../values-{{ .Environment }}.yaml  # Use environment-specific values files
-          chart: ../my-helm-chart  # Specify the full or relative path to the Helm chart
+          valueFiles: "../values-{{ .Environment }}.yaml"  # Use environment-specific values files
+          chart: "../my-helm-chart"  # Specify the full or relative path to the Helm chart
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: "{{ .Environment }}"
