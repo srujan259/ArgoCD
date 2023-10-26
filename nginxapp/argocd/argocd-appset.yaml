@@ -16,6 +16,7 @@ spec:
     spec:
       project: default
       source:
+        repoURL: https://github.com/srujan259/ArgoCD.git
         helm:
           valueFiles: 
             - "../values-{{ .Environment }}.yaml"  # Use environment-specific values files
