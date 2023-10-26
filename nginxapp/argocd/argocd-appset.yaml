@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-helm-apps
+spec:
+  generators:
+    - list:
+        elements:
+          - name: dev
+          - name: staging
+          - name: prod
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: my-nginx-app
+    spec:
+      project: default
+      source:
+        helm:
+          valueFiles: ../values-{{ .Environment }}.yaml  # Use environment-specific values files
+          chart: ../my-helm-chart  # Specify the full or relative path to the Helm chart
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: "{{ .Environment }}"
+      syncPolicy:
+        automated: {}
